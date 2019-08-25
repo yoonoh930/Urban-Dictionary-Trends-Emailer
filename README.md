@@ -42,7 +42,7 @@ python3 fetch_and_email_trend.py
 or if with pipenv:
 
 ```bash
-pipenv run fetch_and_email_trend.py
+pipenv run python3 fetch_and_email_trend.py
 ```
 
 Then voilà:
