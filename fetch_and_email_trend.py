@@ -5,6 +5,11 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+with open("credentials.json") as f:
+  j = json.load(f)
+  EMAIL = j['EMAIL']
+  PW = j['PW']
+
 def get_tooltips(query):
     url = "https://api.urbandictionary.com/v0/tooltip?term={}&key=ab71d33b15d36506acf1e379b0ed07ee".format(query)
     r = requests.get(url)
@@ -20,8 +25,8 @@ words_by_rank = [{x.a.text: [URBAN + x.a.attrs['href'],
                              get_tooltips(x.a.text)]} for x in li]
 
 # Send email
-from_email = "yoonoh930@gmail.com"
-to_email = "yoonoh930@gmail.com"
+from_email = EMAIL
+to_email = EMAIL
 
 msg = MIMEMultipart()
 msg['From'] = from_email
@@ -32,7 +37,8 @@ body_format = """<div><h3><a href={url}>{word}</a></h3></div>
 body_list = list(map(lambda x: body_format.format(
                                                   word=next(iter(x)), 
                                                   definition=next(iter(x.values()))[1],
-                                                  url=next(iter(x.values()))[0]
+                                                  url=next(iter(x.values()))[0
+                                                  ]
                                                   ),
                      words_by_rank))
 body = "".join(body_list)
@@ -51,7 +57,7 @@ msg.attach(MIMEText(html.format(body=body), 'html'))
 
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
-server.login(from_email, "DHdbstjr930!")
+server.login(from_email, PW)
 text = msg.as_string()
 server.sendmail(from_email, to_email, text)
 server.quit()
