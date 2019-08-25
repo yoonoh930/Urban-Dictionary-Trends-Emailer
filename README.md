@@ -47,7 +47,7 @@ pipenv run fetch_and_email_trend.py
 
 Then voilà:
 
-![email](./image.jpg)
+![email](image.jpg)
 
 ## Personally
 
@@ -56,3 +56,7 @@ Since I own raspberry pi and run it 24/7, I send myself trend words every mornin
 ```bash
 * 8 * * * cd PATH/TO/PYTHON_FILE.py && python3 fetch_and_email_trend.py # Add it to your crontab
 ```
+
+## LICENSE
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
