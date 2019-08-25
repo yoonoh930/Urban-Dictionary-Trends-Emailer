@@ -37,8 +37,7 @@ body_format = """<div><h3><a href={url}>{word}</a></h3></div>
 body_list = list(map(lambda x: body_format.format(
                                                   word=next(iter(x)), 
                                                   definition=next(iter(x.values()))[1],
-                                                  url=next(iter(x.values()))[0
-                                                  ]
+                                                  url=next(iter(x.values()))[0]
                                                   ),
                      words_by_rank))
 body = "".join(body_list)
