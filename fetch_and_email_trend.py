@@ -5,6 +5,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+
 with open("credentials.json") as f:
   j = json.load(f)
   EMAIL = j['EMAIL']
